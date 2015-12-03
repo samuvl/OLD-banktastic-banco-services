@@ -1,5 +1,6 @@
 package com.fpmislata.banco.business.service.impl;
 
+import com.aeat.valida.Validador;
 import com.fpmislata.banco.business.domain.EntidadBancaria;
 import com.fpmislata.banco.business.service.EntidadBancariaService;
 import com.fpmislata.banco.core.BusinessException;
@@ -7,8 +8,6 @@ import com.fpmislata.banco.core.BusinessMessage;
 import com.fpmislata.banco.persistence.dao.EntidadBancariaDAO;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -17,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class EntidadBancariaServiceImpl implements EntidadBancariaService {
 
+
+    
     @Autowired
     EntidadBancariaDAO entidadBancariaDAO;
 
@@ -24,13 +25,14 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
     public EntidadBancaria get(int id) {
         return entidadBancariaDAO.get(id);
     }
-
+    
+    
     @Override
     public EntidadBancaria insert(EntidadBancaria entidadBancaria) throws BusinessException {
 
         List<BusinessMessage> businessMessages = new ArrayList<>();
 
-        if (entidadBancaria.codigoEntidad == 0) {
+        if (entidadBancaria.codigoEntidad.equals("0")) {
             BusinessMessage businessMessage = new BusinessMessage("codigoEntidad: ", "El codigo de entidad Ha fallado.");
             businessMessages.add(businessMessage);
         }
@@ -44,12 +46,15 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
             BusinessMessage businessMessage = new BusinessMessage("Dirección: ", "El campo está vacio.");
             businessMessages.add(businessMessage);
         }
-
-        if (entidadBancaria.cif.equalsIgnoreCase("0") || (entidadBancaria.cif.trim().isEmpty())) {
-            BusinessMessage businessMessage = new BusinessMessage("CIF: ", "El campo está vacio o erroneo (0).");
+        
+        Validador validador = new Validador();
+        int validado = validador.checkNif(entidadBancaria.cif);
+        
+        if (validado == 0 || validado < 0) {
+            BusinessMessage businessMessage = new BusinessMessage("CIF: ", "El formato es erróneo.");
             businessMessages.add(businessMessage);
         }
-
+       
         if (businessMessages.size() > 0) {
             throw new BusinessException(businessMessages);
         }
@@ -68,7 +73,7 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
     public EntidadBancaria update(EntidadBancaria entidadBancaria) throws BusinessException {
         List<BusinessMessage> businessMessages = new ArrayList<>();
 
-        if (entidadBancaria.codigoEntidad == 0) {
+        if (entidadBancaria.codigoEntidad.equals("0")) {
             BusinessMessage businessMessage = new BusinessMessage("codigoEntidad: ", "El codigo de entidad Ha fallado.");
             businessMessages.add(businessMessage);
         }
@@ -82,9 +87,11 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
             BusinessMessage businessMessage = new BusinessMessage("Dirección: ", "El campo está vacio.");
             businessMessages.add(businessMessage);
         }
-
-        if (entidadBancaria.cif.equalsIgnoreCase("0") || (entidadBancaria.cif.trim().isEmpty())) {
-            BusinessMessage businessMessage = new BusinessMessage("CIF: ", "El campo está vacio o erroneo (0).");
+        Validador validador = new Validador();
+        int validado = validador.checkNif(entidadBancaria.cif);
+        
+        if (validado == 0 || validado < 0 ) {
+            BusinessMessage businessMessage = new BusinessMessage("CIF: ", "El formato es erróneo.");
             businessMessages.add(businessMessage);
         }
 

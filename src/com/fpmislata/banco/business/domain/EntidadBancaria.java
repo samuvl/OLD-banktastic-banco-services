@@ -10,7 +10,7 @@ public class EntidadBancaria {
 
     public int idEntidadBancaria;
     public String nombre;
-    public int codigoEntidad;
+    public String codigoEntidad;
     public Date fechaCreacion;
     public String direccion;
     public String cif;
@@ -18,7 +18,7 @@ public class EntidadBancaria {
     public EntidadBancaria() {
     }
 
-    public EntidadBancaria(String nombre, int codigoEntidad) {
+    public EntidadBancaria(String nombre, String codigoEntidad) {
         this.nombre = nombre;
         this.codigoEntidad = codigoEntidad;
     }
@@ -39,11 +39,11 @@ public class EntidadBancaria {
         this.nombre = nombre;
     }
 
-    public int getCodigoEntidad() {
+    public String getCodigoEntidad() {
         return codigoEntidad;
     }
 
-    public void setCodigoEntidad(int codigoEntidad) {
+    public void setCodigoEntidad(String codigoEntidad) {
         this.codigoEntidad = codigoEntidad;
     }
 

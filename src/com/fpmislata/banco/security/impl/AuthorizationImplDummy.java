@@ -14,7 +14,7 @@ public class AuthorizationImplDummy implements Authorization {
         /*usuario.getRol().equals(Rol.Administrador*/
         boolean isAuthorized;
 
-        if (url.equalsIgnoreCase("/banco-api/api/login")) {
+        if (url.equalsIgnoreCase("/banktastic-banco-api/api/login")) {
             isAuthorized = true;
         } else if (usuario != null) {
             isAuthorized = true;

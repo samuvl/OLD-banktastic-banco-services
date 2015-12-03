@@ -38,7 +38,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getInt("codigoEntidad"));
+                entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
                 entidadBancaria.setCif(resultSet.getString("CIF"));
                 entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
                 entidadBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
@@ -72,7 +72,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             String query = "INSERT INTO EntidadBancaria (nombre, codigoEntidad, fechaCreacion, direccion, CIF) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, entidadBancaria.getNombre());
-            preparedStatement.setInt(2, entidadBancaria.getCodigoEntidad());
+            preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
             preparedStatement.setDate(3, entidadBancaria.getFechaCreacion());
             preparedStatement.setString(4, entidadBancaria.getDireccion());
             preparedStatement.setString(5, entidadBancaria.getCif());
@@ -118,7 +118,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             String query = "UPDATE EntidadBancaria SET nombre = ?, codigoEntidad = ?, fechaCreacion = ?, direccion = ?, CIF = ? WHERE idEntidadBancaria = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
-            preparedStatement.setInt(2, entidadBancaria.getCodigoEntidad());
+            preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
             preparedStatement.setDate(3, entidadBancaria.getFechaCreacion());
             preparedStatement.setString(4, entidadBancaria.getDireccion());
             preparedStatement.setString(5, entidadBancaria.getCif());
@@ -186,7 +186,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getInt("codigoEntidad"));
+                EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
                 entidadBancaria.setCif(resultSet.getString("CIF"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
                 entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
@@ -215,7 +215,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getInt("codigoEntidad"));
+                EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
                 entidadBancaria.setCif(resultSet.getString("CIF"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
                 entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
