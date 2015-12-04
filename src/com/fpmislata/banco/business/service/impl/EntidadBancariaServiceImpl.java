@@ -33,7 +33,7 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
         List<BusinessMessage> businessMessages = new ArrayList<>();
 
         if (entidadBancaria.codigoEntidad.equals("0")) {
-            BusinessMessage businessMessage = new BusinessMessage("codigoEntidad: ", "El codigo de entidad Ha fallado.");
+            BusinessMessage businessMessage = new BusinessMessage("codigoEntidad: ", "No puede ser 0..");
             businessMessages.add(businessMessage);
         }
 
@@ -42,6 +42,11 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
             businessMessages.add(businessMessage);
         }
 
+        if (entidadBancaria.fechaCreacion == null)  {
+            BusinessMessage businessMessage = new BusinessMessage("Fecha: ", "El campo está vacio.");
+            businessMessages.add(businessMessage);
+        }
+        
         if ((entidadBancaria.direccion == null) || (entidadBancaria.direccion.trim().isEmpty())) {
             BusinessMessage businessMessage = new BusinessMessage("Dirección: ", "El campo está vacio.");
             businessMessages.add(businessMessage);
@@ -74,7 +79,7 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
         List<BusinessMessage> businessMessages = new ArrayList<>();
 
         if (entidadBancaria.codigoEntidad.equals("0")) {
-            BusinessMessage businessMessage = new BusinessMessage("codigoEntidad: ", "El codigo de entidad Ha fallado.");
+            BusinessMessage businessMessage = new BusinessMessage("codigoEntidad: ", "No puede ser 0.");
             businessMessages.add(businessMessage);
         }
 
@@ -83,6 +88,11 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
             businessMessages.add(businessMessage);
         }
 
+        if (entidadBancaria.fechaCreacion == null)  {
+            BusinessMessage businessMessage = new BusinessMessage("Fecha: ", "El campo está vacio.");
+            businessMessages.add(businessMessage);
+        }
+        
         if ((entidadBancaria.direccion == null) || (entidadBancaria.direccion.trim().isEmpty())) {
             BusinessMessage businessMessage = new BusinessMessage("Dirección: ", "El campo está vacio.");
             businessMessages.add(businessMessage);
