@@ -5,16 +5,14 @@ import com.fpmislata.banco.business.domain.EntidadBancaria;
 import com.fpmislata.banco.core.BusinessException;
 import com.fpmislata.banco.core.BusinessMessage;
 import com.fpmislata.banco.persistence.dao.EntidadBancariaDAO;
-import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -40,7 +38,8 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             if (resultSet.next()) {
                 entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
                 entidadBancaria.setCif(resultSet.getString("CIF"));
-                entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
+                //controlar si resultSet.getDate fecha creacion es null
+                entidadBancaria.setFechaCreacion(new java.util.Date(resultSet.getDate("fechaCreacion").getTime()));
                 entidadBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
             } else {
@@ -73,7 +72,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             PreparedStatement preparedStatement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
-            preparedStatement.setDate(3, entidadBancaria.getFechaCreacion());
+            preparedStatement.setDate(3, (Date) entidadBancaria.getFechaCreacion());
             preparedStatement.setString(4, entidadBancaria.getDireccion());
             preparedStatement.setString(5, entidadBancaria.getCif());
             preparedStatement.executeUpdate();
@@ -119,7 +118,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
-            preparedStatement.setDate(3, entidadBancaria.getFechaCreacion());
+            preparedStatement.setDate(3, (Date) entidadBancaria.getFechaCreacion());
             preparedStatement.setString(4, entidadBancaria.getDireccion());
             preparedStatement.setString(5, entidadBancaria.getCif());
             preparedStatement.setInt(6, entidadBancaria.getIdEntidadBancaria());
@@ -136,11 +135,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
 
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1062 && ex.getSQLState().equals("23000")) {
-                List<BusinessMessage> businessMessages = new ArrayList<>();
-                BusinessMessage businessMessage = new BusinessMessage("CodigoEntidad: ", "Ya existe.");
-                businessMessages.add(businessMessage);
-
-                throw new BusinessException(businessMessages);
+                throw new BusinessException("CodigoEntidad: ", ex.getMessage());
             } else {
                 throw new RuntimeException(ex);
             }
@@ -189,7 +184,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
                 EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
                 entidadBancaria.setCif(resultSet.getString("CIF"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
-                entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
+                entidadBancaria.setFechaCreacion(new java.util.Date(resultSet.getDate("fechaCreacion").getTime()));
                 entidadBancaria.setIdEntidadBancaria(resultSet.getInt("identidadBancaria"));
                 entidadesBancarias.add(entidadBancaria);
             }
@@ -218,7 +213,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
                 EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
                 entidadBancaria.setCif(resultSet.getString("CIF"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
-                entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
+                entidadBancaria.setFechaCreacion(new java.util.Date(resultSet.getDate("fechaCreacion").getTime()));
                 entidadBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 entidadesBancarias.add(entidadBancaria);
             }

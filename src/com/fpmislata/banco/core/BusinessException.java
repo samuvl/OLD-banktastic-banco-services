@@ -9,8 +9,6 @@ import java.util.List;
  */
 public class BusinessException extends Exception {
     private List<BusinessMessage> businessMessages = new ArrayList<>();
-    private String fieldName;
-    private String mensaje;
 
     public BusinessException(String fieldName, String mensaje) {
         BusinessMessage businessMessage = new BusinessMessage(fieldName, mensaje);

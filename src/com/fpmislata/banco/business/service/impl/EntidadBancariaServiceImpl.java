@@ -99,7 +99,7 @@ public class EntidadBancariaServiceImpl implements EntidadBancariaService {
             throw new BusinessException(businessMessages);
         }
 
-        return entidadBancariaDAO.insert(entidadBancaria);
+        return entidadBancariaDAO.update(entidadBancaria);
     }
 
     @Override
