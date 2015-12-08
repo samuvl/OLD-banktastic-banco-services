@@ -1,4 +1,6 @@
-CREATE TABLE `entidadbancaria` (
+CREATE DATABASE banco;
+
+CREATE TABLE IF NOT EXISTS `entidadbancaria` (
 	`idEntidadBancaria` INT(11) NOT NULL AUTO_INCREMENT,
 	`nombre` VARCHAR(50) NULL DEFAULT NULL,
 	`codigoEntidad` VARCHAR(50) NULL DEFAULT NULL UNIQUE,
