@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.implMINUSCULASPONER.jdbc;
+package com.fpmislata.banco.persistence.dao.impl.jdbc;
 
 import com.fpmislata.banco.persistence.jdbc.ConnectionFactory;
 import com.fpmislata.banco.business.domain.EntidadBancaria;

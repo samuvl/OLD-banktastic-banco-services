@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.implMINUSCULASPONER.hibernate;
+package com.fpmislata.banco.persistence.dao.impl.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

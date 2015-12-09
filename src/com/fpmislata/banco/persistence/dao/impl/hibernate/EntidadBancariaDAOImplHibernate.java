@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.implMINUSCULASPONER.hibernate;
+package com.fpmislata.banco.persistence.dao.impl.hibernate;
 
 import com.fpmislata.banco.business.domain.EntidadBancaria;
 import com.fpmislata.banco.core.BusinessException;

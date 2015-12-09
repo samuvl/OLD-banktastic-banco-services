@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.implMINUSCULASPONER.jdbc;
+package com.fpmislata.banco.persistence.dao.impl.jdbc;
 
 /*package com.fpmislata.banco.persistence.dao.Impl.jdbc;
 
