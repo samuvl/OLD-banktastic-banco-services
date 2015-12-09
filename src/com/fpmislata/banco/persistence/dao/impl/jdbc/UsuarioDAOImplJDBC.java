@@ -1,6 +1,6 @@
 package com.fpmislata.banco.persistence.dao.impl.jdbc;
 
-/*package com.fpmislata.banco.persistence.dao.Impl.jdbc;
+/*package com.fpmislata.banco.persistence.dao.impl.jdbc;
 
 import com.fpmislata.banco.business.domain.Usuario;
 import com.fpmislata.banco.persistence.dao.UsuarioDAO;
