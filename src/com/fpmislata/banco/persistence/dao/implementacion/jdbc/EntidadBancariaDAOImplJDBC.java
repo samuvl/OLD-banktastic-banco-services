@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.impl.jdbc;
+package com.fpmislata.banco.persistence.dao.implementacion.jdbc;
 
 import com.fpmislata.banco.persistence.jdbc.ConnectionFactory;
 import com.fpmislata.banco.business.domain.EntidadBancaria;

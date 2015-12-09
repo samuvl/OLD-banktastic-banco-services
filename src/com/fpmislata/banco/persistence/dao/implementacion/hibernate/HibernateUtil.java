@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.impl.hibernate;
+package com.fpmislata.banco.persistence.dao.implementacion.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

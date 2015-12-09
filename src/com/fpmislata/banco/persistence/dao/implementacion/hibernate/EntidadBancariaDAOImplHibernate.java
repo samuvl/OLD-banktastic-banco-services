@@ -1,4 +1,4 @@
-package com.fpmislata.banco.persistence.dao.impl.hibernate;
+package com.fpmislata.banco.persistence.dao.implementacion.hibernate;
 
 import com.fpmislata.banco.business.domain.EntidadBancaria;
 import com.fpmislata.banco.core.BusinessException;
