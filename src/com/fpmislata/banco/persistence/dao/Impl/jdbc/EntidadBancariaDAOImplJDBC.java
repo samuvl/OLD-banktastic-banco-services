@@ -29,14 +29,14 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
         try {
             Connection conexion = connectionFactory.getConnection();
 
-            String query = "SELECT * FROM EntidadBancaria WHERE idEntidadBancaria = ?";
+            String query = "SELECT * FROM entidadbancaria WHERE idEntidadBancaria = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setInt(1, idEntidadBancaria);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
                 entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
-                entidadBancaria.setCif(resultSet.getString("CIF"));
+                entidadBancaria.setCif(resultSet.getString("cif"));
                 entidadBancaria.setFechaCreacion(resultSet.getDate("fechaCreacion"));
                 entidadBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
@@ -66,7 +66,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
         try {
             int id;
 
-            String query = "INSERT INTO EntidadBancaria (nombre, codigoEntidad, fechaCreacion, direccion, CIF) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO entidadbancaria (nombre, codigoEntidad, fechaCreacion, direccion, cif) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = conexion.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
@@ -108,7 +108,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
         try {
             Connection conexion = connectionFactory.getConnection();
 
-            String query = "UPDATE EntidadBancaria SET nombre = ?, codigoEntidad = ?, fechaCreacion = ?, direccion = ?, CIF = ? WHERE idEntidadBancaria = ?";
+            String query = "UPDATE entidadbancaria SET nombre = ?, codigoEntidad = ?, fechaCreacion = ?, direccion = ?, cif = ? WHERE idEntidadBancaria = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1, entidadBancaria.getNombre());
             preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
@@ -143,7 +143,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
         try {
             Connection conexion = connectionFactory.getConnection();
 
-            String query = "DELETE FROM EntidadBancaria WHERE idEntidadBancaria = ?";
+            String query = "DELETE FROM entidadbancaria WHERE idEntidadBancaria = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setInt(1, idEntidadBancaria);
             int filasBorradas = preparedStatement.executeUpdate();
@@ -170,20 +170,20 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
 
         try {
             Connection conexion = connectionFactory.getConnection();
-            String query = "SELECT * FROM EntidadBancaria";
+            String query = "SELECT * FROM entidadbancaria";
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
-                entidadBancaria.setCif(resultSet.getString("CIF"));
+                entidadBancaria.setCif(resultSet.getString("cif"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
                 if (resultSet.getDate("fechaCreacion") == null) {
                     entidadBancaria.setFechaCreacion(new Date());
                 } else {
                     entidadBancaria.setFechaCreacion(new java.util.Date(resultSet.getDate("fechaCreacion").getTime()));
                 }
-                entidadBancaria.setIdEntidadBancaria(resultSet.getInt("identidadBancaria"));
+                entidadBancaria.setIdEntidadBancaria(resultSet.getInt("idEntidadBancaria"));
                 entidadesBancarias.add(entidadBancaria);
             }
             //Thread.sleep(14000);
@@ -202,14 +202,14 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO {
 
         try {
             Connection conexion = connectionFactory.getConnection();
-            String query = "SELECT * FROM EntidadBancaria where nombre = ?";
+            String query = "SELECT * FROM entidadbancaria where nombre = ?";
             PreparedStatement preparedStatement = conexion.prepareStatement(query);
             preparedStatement.setString(1, nombre);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 EntidadBancaria entidadBancaria = new EntidadBancaria(resultSet.getString("nombre"), resultSet.getString("codigoEntidad"));
-                entidadBancaria.setCif(resultSet.getString("CIF"));
+                entidadBancaria.setCif(resultSet.getString("cif"));
                 entidadBancaria.setDireccion(resultSet.getString("direccion"));
                 if (resultSet.getDate("fechaCreacion") == null) {
                     entidadBancaria.setFechaCreacion(new Date());
