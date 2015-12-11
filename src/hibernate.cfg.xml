@@ -9,8 +9,8 @@
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.show_sql">true</property>
 
-        <!--<mapping resource="ejemplo01/Profesor.hbm.xml"/>-->
-        <mapping class="business.domain/EntidadBancaria"/>
+        <mapping resource="com/fpmislata/banco/persistence/dao/implementacion/hibernate/hbm/EntidadBancaria.hbm.xml"/>
+       <!-- <mapping class="com/fpmislata/banco/persistence/dao/implementacion/hibernate/hbm/EntidadBancaria"/>-->
 
     </session-factory>
 </hibernate-configuration>

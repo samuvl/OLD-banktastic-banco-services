@@ -30,11 +30,11 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        EntidadBancaria entidadBancaria = (EntidadBancaria) session.save(t);
+        session.save(t);
 
         session.getTransaction().commit();
         session.close();
-        return entidadBancaria;
+        return t;
     }
 
     @Override
