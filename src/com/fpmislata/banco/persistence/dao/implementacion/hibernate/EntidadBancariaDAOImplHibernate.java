@@ -8,7 +8,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
+public class EntidadBancariaDAOImplHibernate extends GenericDAOImplHibernate<EntidadBancaria> implements EntidadBancariaDAO {
 
     @Override
     public List<EntidadBancaria> findByNombre(String nombre) {
