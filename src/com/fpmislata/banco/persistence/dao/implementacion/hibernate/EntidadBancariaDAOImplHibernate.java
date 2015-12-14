@@ -3,6 +3,7 @@ package com.fpmislata.banco.persistence.dao.implementacion.hibernate;
 import com.fpmislata.banco.business.domain.EntidadBancaria;
 import com.fpmislata.banco.core.BusinessException;
 import com.fpmislata.banco.persistence.dao.EntidadBancariaDAO;
+import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,7 +15,8 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("SELECT * FROM entidadbancaria WHERE nombre='" + nombre + "' ");
+        Query query = session.createQuery("SELECT entidadBancaria FROM EntidadBancaria entidadBancaria WHERE nombre=?");
+        query.setString(0, nombre);
         List<EntidadBancaria> entidadesBancarias = query.list();
 
         return entidadesBancarias;
@@ -29,6 +31,7 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
         session.getTransaction().commit();
         session.close();
+
         return entidadBancaria;
     }
 
@@ -37,7 +40,17 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        session.save(t);
+        try {
+            session.save(t);
+        } catch (org.hibernate.exception.ConstraintViolationException ex) {
+
+            SQLException sqlException = ex.getSQLException();
+            if (sqlException.getErrorCode() == 1062 && sqlException.getSQLState().equals("23000")) {
+                throw new BusinessException("CodigoEntidad: ", "El valor está duplicado");
+            } else {
+                throw new RuntimeException(ex);
+            }
+        }
 
         session.getTransaction().commit();
         session.close();
@@ -80,7 +93,7 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
 
-        Query query = session.createQuery("SELECT * FROM entidadbancaria");
+        Query query = session.createQuery("SELECT entidadBancaria FROM EntidadBancaria entidadBancaria");
         List<EntidadBancaria> entidadesBancarias = query.list();
 
         return entidadesBancarias;
