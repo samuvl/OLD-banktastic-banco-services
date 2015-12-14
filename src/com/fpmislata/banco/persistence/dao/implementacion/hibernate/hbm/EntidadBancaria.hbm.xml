@@ -7,10 +7,8 @@
         </id>
         <property name="nombre" />
         <property name="codigoEntidad" />
+        <property name="fechaCreacion" />
+        <property name="direccion" />
+        <property name="cif" />
     </class>
-    
-<!--<query name="findAllByNombre"><![CDATA[
-         SELECT * FROM entidadbancaria WHERE nombre=
-     ]]></query>-->
-    
 </hibernate-mapping>
