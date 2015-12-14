@@ -16,8 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class EntidadBancariaServiceImpl implements EntidadBancariaService {
 
-
-    
     @Autowired
     EntidadBancariaDAO entidadBancariaDAO;
 

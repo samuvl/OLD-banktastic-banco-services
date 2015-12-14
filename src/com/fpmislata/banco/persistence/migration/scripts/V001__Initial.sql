@@ -9,5 +9,16 @@ CREATE TABLE IF NOT EXISTS `entidadbancaria` (
 )
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB
-AUTO_INCREMENT=27
+;
+
+CREATE TABLE IF NOT EXISTS `usuario` (
+	`idUsuario` INT(11) NOT NULL AUTO_INCREMENT,
+	`nombre` VARCHAR(50) NULL DEFAULT NULL,
+	`encryptedPassword` VARCHAR(80) NULL DEFAULT NULL,
+	`rol` ENUM('administrador','usuario') NULL DEFAULT NULL,
+	`nick` VARCHAR(50)  NULL DEFAULT NULL,
+	PRIMARY KEY (`idUsuario`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
 ;

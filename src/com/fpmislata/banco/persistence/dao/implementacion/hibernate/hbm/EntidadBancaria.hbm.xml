@@ -8,4 +8,9 @@
         <property name="nombre" />
         <property name="codigoEntidad" />
     </class>
+    
+<!--<query name="findAllByNombre"><![CDATA[
+         SELECT * FROM entidadbancaria WHERE nombre=
+     ]]></query>-->
+    
 </hibernate-mapping>

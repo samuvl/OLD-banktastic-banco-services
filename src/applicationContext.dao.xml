@@ -10,5 +10,7 @@
     <context:annotation-config/>
     
     <bean class="com.fpmislata.banco.persistence.dao.implementacion.jdbc.EntidadBancariaDAOImplJDBC" />
+    <!--<bean class="com.fpmislata.banco.persistence.dao.implementacion.hibernate.EntidadBancariaDAOImplHibernate" />-->
+    
     
 </beans> 

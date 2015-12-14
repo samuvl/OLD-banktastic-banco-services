@@ -4,13 +4,20 @@ import com.fpmislata.banco.business.domain.EntidadBancaria;
 import com.fpmislata.banco.core.BusinessException;
 import com.fpmislata.banco.persistence.dao.EntidadBancariaDAO;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
     @Override
     public List<EntidadBancaria> findByNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("SELECT * FROM entidadbancaria WHERE nombre='" + nombre + "' ");
+        List<EntidadBancaria> entidadesBancarias = query.list();
+
+        return entidadesBancarias;
     }
 
     @Override
@@ -70,7 +77,13 @@ public class EntidadBancariaDAOImplHibernate implements EntidadBancariaDAO {
 
     @Override
     public List<EntidadBancaria> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        Query query = session.createQuery("SELECT * FROM entidadbancaria");
+        List<EntidadBancaria> entidadesBancarias = query.list();
+
+        return entidadesBancarias;
     }
 
 }
