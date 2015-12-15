@@ -1,6 +1,9 @@
 package com.fpmislata.banco.business.domain;
 
 import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  *
@@ -11,6 +14,8 @@ public class Usuario implements Serializable{
     private int idUsuario;
     private String nombre;
     private String encryptedPassword;
+    @Column(name="rol")
+    @Enumerated(EnumType.STRING)
     private Rol rol;
     private String nick;
 
