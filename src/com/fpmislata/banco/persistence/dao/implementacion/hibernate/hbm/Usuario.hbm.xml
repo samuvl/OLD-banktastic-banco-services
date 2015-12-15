@@ -7,7 +7,14 @@
         </id>
         <property name="nombre" />
         <property name="encryptedPassword" />
-        <property name="rol" />
+            
+        <property name="rol">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.fpmislata.banco.business.domain.Rol</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        
         <property name="nick" />
     </class>
 </hibernate-mapping>
