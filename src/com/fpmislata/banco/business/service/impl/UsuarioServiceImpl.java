@@ -47,7 +47,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 //            BusinessMessage businessMessage = new BusinessMessage("Rol: ", "El campo está vacio.");
 //            businessMessages.add(businessMessage);
 //        }
-
+        
         if (businessMessages.size() > 0) {
             throw new BusinessException(businessMessages);
         }

@@ -33,7 +33,9 @@ public class GenericDAOImplHibernate<T> implements GenericDAO<T> {
         session.beginTransaction();
 
         try {
+            
             session.save(t);
+            
         } catch (org.hibernate.exception.ConstraintViolationException ex) {
 
             SQLException sqlException = ex.getSQLException();
