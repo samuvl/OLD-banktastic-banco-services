@@ -1,10 +1,12 @@
 package com.fpmislata.banco.business.domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alumno
  */
-public class Usuario {
+public class Usuario implements Serializable{
 
     private int idUsuario;
     private String nombre;
@@ -12,16 +14,19 @@ public class Usuario {
     private Rol rol;
     private String nick;
 
+    public Usuario(){
+    }
+    
     public Usuario(String nombre, String encryptedPassword) {
         this.nombre = nombre;
         this.encryptedPassword = encryptedPassword;
     }
 
-    public int getId() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setId(int idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
